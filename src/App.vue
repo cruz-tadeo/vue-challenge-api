@@ -20,7 +20,7 @@ const indexTask = ref(0)
 const addItem = (text: string) => {
   tasks.value.push(text)
   task.value = ''
-  alert('Agregado correctamente','La tarea se ha guardado correctamente')
+  alert('Agregado correctamente','La tarea se ha guardado correctamente','success','https://media.tenor.com/ouQzDmgC9CwAAAAj/miku-vocaloid.gif')
 }
 
 const isEdit: Ref<boolean> = ref(false)
@@ -40,21 +40,30 @@ const selectItem = (position: number) => {
 const editItem = (position: number, text: string) => {
   tasks.value[position] = text
   task.value = ''
-  alert('Editado','La tarea se ha editado correctamente','warning')
+  alert('Editado','La tarea se ha editado correctamente','warning','https://media.tenor.com/KFFx4_AtN24AAAAj/pain-in-his-dih.gif')
   isEdit.value = false
 }
 
 const removeItem = (position: number) => {
   tasks.value = tasks.value.filter((task, index) => index != position)
-  alert('Eliminado','La tarea se ha eliminado')
+  alert('Eliminado','La tarea se ha eliminado','success','https://media.tenor.com/2FL76f6q7u8AAAAj/explosion.gif')
   console.log('eliminando', position)
 }
 
-const alert =(title:string,text:string,icon:SweetAlertIcon  ='success') =>{
+const alert =(title:string,text:string,icon:SweetAlertIcon  ='success',gif:string) =>{
   Swal.fire({
   title: title,
   text: text,
-  icon: icon
+  icon: icon,
+  backdrop: `rgba(0,0,123,0.4)
+            url(${gif})
+            left top
+            no-repeat`
+
+  //   `rgba(0,0,123,0.4)
+  //   url("/images/nyan-cat.gif")
+  //   left top
+  //   no-repeat`
 });
 }
 
