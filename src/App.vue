@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { computed, type Ref, ref } from 'vue'
+import Swal, { type SweetAlertIcon } from 'sweetalert2'
 import IconTrash from '@/components/IconTrash.vue'
 import IconEdit from '@/components/IconEdit.vue'
+
 
 const tasks: Ref<string[]> = ref(['Hola', 'hola'])
 
@@ -18,6 +20,7 @@ const indexTask = ref(0)
 const addItem = (text: string) => {
   tasks.value.push(text)
   task.value = ''
+  alert('Agregado correctamente','La tarea se ha guardado correctamente')
 }
 
 const isEdit: Ref<boolean> = ref(false)
@@ -37,28 +40,43 @@ const selectItem = (position: number) => {
 const editItem = (position: number, text: string) => {
   tasks.value[position] = text
   task.value = ''
+  alert('Editado','La tarea se ha editado correctamente','warning')
   isEdit.value = false
 }
 
 const removeItem = (position: number) => {
   tasks.value = tasks.value.filter((task, index) => index != position)
-
+  alert('Eliminado','La tarea se ha eliminado')
   console.log('eliminando', position)
 }
+
+const alert =(title:string,text:string,icon:SweetAlertIcon  ='success') =>{
+  Swal.fire({
+  title: title,
+  text: text,
+  icon: icon
+});
+}
+
+
+
 </script>
 
 <template>
   <div class="container mx-auto my-20">
-    <div class="my-10">
-      <input
-        v-model="search"
-        type="text"
-        class="bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        required
-      />
+    <div class="my-10 flex justify-center">
+      <div class="basis-128">
+        <input
+          placeholder="Buscar Tareas"
+          v-model="search"
+          type="text"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          required
+        />
+      </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-10/12">
-      <div>
+    <div class="max-w-[1200px] mx-auto">
+      <div class="table-auto">
         <h1 class="text-2xl font-bold mb-4">Tareas</h1>
         <table class="table-auto w-full border-collapse border border-gray-300">
           <thead>
@@ -90,9 +108,12 @@ const removeItem = (position: number) => {
         </table>
       </div>
     </div>
-    <div>
+    <div class="my-10 flex justify-center">
+      <div class="basis-128">
       <form @submit.prevent="!isEdit ? addItem(task) : editItem(indexTask, task)" class="space-y-4">
+
         <input
+        placeholder="Añadir Tareas"
           type="text"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           required
@@ -106,6 +127,7 @@ const removeItem = (position: number) => {
           {{ isEdit ? 'Edit' : 'Add' }}
         </button>
       </form>
+      </div>
     </div>
   </div>
 </template>
