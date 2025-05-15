@@ -1,0 +1,10 @@
+ref<number>() → una variable que guarda un número.
+
+ref<string>() → guarda una cadena de texto.
+
+ref<boolean>() → guarda un true o false.
+
+ref<number | null>() → guarda un número o null.
+
+//computed: permite crear una propiedad computada
+que se actualiza automaticamente cuando cambia el valor de search
