@@ -16,7 +16,7 @@ const task: Ref<string> = ref('')
 const indexTask = ref(0)
 
 const addItem = (text: string) => {
-  tasks.value.unshift(text)
+  tasks.value.push(text)
   task.value = ''
 }
 
@@ -59,31 +59,35 @@ const removeItem = (position: number) => {
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-10/12">
       <div>
-        <table class="table-fixed">
-
-        </table>
         <h1 class="text-2xl font-bold mb-4">Tareas</h1>
-        <ul class="list-disc pl-5 space-y-2">
-          <li
-            class="bg-red-500 flex items-center justify-between p-4"
-            v-for="(task, index) in filterItems"
-            :key="index"
-          >
-            <div @click="selectItem(index)">
-              <p>{{ index + 1 }}.- {{ task }}</p>
-              <div class="flex space-x-4">
-                <icon-trash
-                  class="w-10 h-10 hover:cursor-pointer"
-                  @click="removeItem(index)"
-                ></icon-trash>
-                <icon-edit
-                  class="w-10 h-10 hover:cursor-pointer"
-                  @click="selectItem(index)"
-                ></icon-edit>
-              </div>
-            </div>
-          </li>
-        </ul>
+        <table class="table-auto w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-slate-700 text-white">
+              <th class="border border-gray-300 px-4 py-2">N°</th>
+              <th class="border border-gray-300 px-4 py-2">Tarea</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(task, index) in filterItems" :key="index" class="hover:bg-gray-100">
+              <td class="border border-gray-300 px-4 py-2 text-center">{{ index + 1 }}</td>
+              <td class="border border-gray-300 px-4 ">{{ task }}
+
+                <div class="flex justify-center space-x-4">
+                  <icon-trash
+                    class="w-6 h-6 hover:cursor-pointer"
+                    @click="removeItem(index)"
+                  ></icon-trash>
+                  <icon-edit
+                    class="w-6 h-6  hover:cursor-pointer"
+                    @click="selectItem(index)"
+                  ></icon-edit>
+                </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div>
