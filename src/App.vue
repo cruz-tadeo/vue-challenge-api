@@ -9,15 +9,34 @@ const filterItems = computed(() => tasks.value.filter((task) => task.toLowerCase
 //words.filter((word) => word.length > 6)
 const search:Ref<string> = ref('');
 
-const task :Ref<string>= ref('');
+const task:Ref<string>= ref('');
+
+const indexTask = ref(0)
 
 const addItem = (text:string) => {
   tasks.value.unshift(text);
   task.value = ''
 };
 
+const isEdit :Ref<boolean> = ref(false)
+const selectItem =(position:number) =>{
+  isEdit.value= true
+  task.value = tasks.value.find((element,index) => index == position) ?? '';
+  indexTask.value = position
+  console.log(position)
+}
 
+// const editItem = (text:string) =>{
+//   tasks.value = tasks.value.filter((task,index) => index == text)
 
+//   console.log('actualizar')
+//  }
+
+const editItem = (position:number, text:string) => {
+    tasks.value[position] = text
+    task.value = ''
+    isEdit.value= false
+  }
 
 const removeItem = (position:number) => {
   tasks.value = tasks.value.filter((task,index) => index != position)
@@ -43,13 +62,16 @@ const removeItem = (position:number) => {
         <h1 class="text-2xl font-bold mb-4">Tareas</h1>
         <ul class="list-disc pl-5 space-y-2">
           <li class="bg-red-500 grid grid-cols-1 md:grid-cols-2 gap-8" v-for="(task, index) in filterItems" :key="index">
+            <div @click="selectItem(index)" >
             <p>{{ index + 1 }}.- {{ task }}</p>
             <p class="w-10 h-10"><icon-trash class="w-10 h-10 hover:cursor-pointer" @delete="removeItem(index)"></icon-trash></p>
+            </div>
           </li>
         </ul>
       </div>
+      </div>
       <div>
-        <form @submit.prevent="addItem(task)" class="space-y-4">
+        <form @submit.prevent="!isEdit ? addItem(task) : editItem(indexTask, task)" class="space-y-4">
           <input
             type="text"
 
@@ -66,12 +88,12 @@ const removeItem = (position:number) => {
                  px-5 py-2.5"
 
           >
-            Add
+            {{ isEdit ? 'Edit' : 'Add' }}
           </button>
+
         </form>
       </div>
     </div>
-  </div>
 
 </template>
 
