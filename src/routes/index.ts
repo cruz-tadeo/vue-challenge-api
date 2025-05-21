@@ -3,12 +3,14 @@ import type { RouteRecordRaw } from 'vue-router'
 import TaskTable from '@/pages/Task-table.vue'
 import HomeTask from '@/pages/home-task.vue'
 import costumersList from '@/pages/costumers-list.vue'
+import UserData from '@/components/userData.vue'
 
 //definicion de rutas
 const routes: Array<RouteRecordRaw> = [
   {path: '/', name: 'Inicio', component: HomeTask},
   {path: '/task-table',name: 'Tabla de Tareas', component: TaskTable},
   {path: '/costumers-list',name: 'Lista de Clientes', component: costumersList},
+  {path: '/user-data',name: 'Datos del Usuario', component: UserData},
 ]
 
 const router = createRouter({

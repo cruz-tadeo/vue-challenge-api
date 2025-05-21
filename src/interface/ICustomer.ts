@@ -4,9 +4,7 @@ export interface ICustomer {
   correo: string;
   telefono: string;
   direccion: string;
-  creadoEn?: string;
-  actualizadoEn?: FormData;
+  creado_en?: string;
+  actualizado_en?: string;
 }
-
-
 
