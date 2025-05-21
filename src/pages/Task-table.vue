@@ -72,7 +72,15 @@ const alert =(title:string,text:string,icon:SweetAlertIcon  ='success',gif:strin
 </script>
 
 <template>
-  <div class="container mx-auto my-20">
+  <div class="container mx-auto my-10">
+    <nav>
+      <RouterLink
+        class="inline-block rounded-md border border-transparent bg-[#6bbbb0] px-3 py-1.5 text-center font-medium text-white hover:bg-[#568f87]"
+        to="/"
+        >Inicio</RouterLink
+      >
+
+    </nav>
     <div class="my-10 flex justify-center">
       <div class="basis-128">
         <input

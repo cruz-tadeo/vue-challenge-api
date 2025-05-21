@@ -13,7 +13,7 @@ const { id } = route.params;
 
 onMounted(async() => {
   await fetchCustomers()
-  customer.value = customers.value.find((item:ICustomer) => item.id == +id);
+  customer.value = customers.value.find((item:ICustomer) => item.id == +id); 
 
 })
 </script>
