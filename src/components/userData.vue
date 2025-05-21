@@ -2,7 +2,7 @@
 import { useCustomers } from '@/composables/useCustomers';
 import { onMounted } from 'vue';
 
-const { customers, loading, error, fetchCustomers } = useCustomers();
+const { customers, fetchCustomers, formatearFecha } = useCustomers();
 
 onMounted(async() => {
   await fetchCustomers()
@@ -20,8 +20,8 @@ onMounted(async() => {
       <p>Correo: {{ customer.correo }}</p>
       <p>Telefono: {{ customer.telefono }}</p>
       <p>Direccion: {{ customer.direccion }}</p>
-      <p>Creado en: {{ customer.creadoEn }}</p>
-      <p>Actualizado en: {{ customer.actualizadoEn }}</p>
+      <p>Creado en: {{ formatearFecha(customer.creadoEn ?? '') }}</p>
+      <p>Actualizado en: {{formatearFecha(customer.actualizadoEn ?? '') }}</p>
       </div>
   </div>
 </template>

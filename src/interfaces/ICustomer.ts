@@ -5,7 +5,7 @@ export interface ICustomer {
   telefono: string;
   direccion: string;
   creadoEn?: string;
-  actualizadoEn?: FormData;
+  actualizadoEn?: string;
 }
 
 

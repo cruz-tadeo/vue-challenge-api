@@ -1,6 +1,16 @@
 import { ref, type Ref } from 'vue';
 import type { ICustomer } from '@/interfaces/ICustomer';
 
+export function formatearFecha(fechaIso: string): string {
+  const fecha = new Date(fechaIso);
+  const formateador = new Intl.DateTimeFormat('es-ES', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  });
+  return formateador.format(fecha);
+}
+
 export function useCustomers() {
   const customers: Ref<ICustomer[]> = ref([]);
   const loading = ref(false);
@@ -26,6 +36,9 @@ export function useCustomers() {
       loading.value = false;
     }
   };
+
+
+
 
   const fetchCustomer = async (id:number): Promise<unknown> => {
     loading.value = true;
@@ -54,6 +67,7 @@ export function useCustomers() {
     loading,
     error,
     fetchCustomers,
-    fetchCustomer
+    fetchCustomer,
+    formatearFecha
   };
 }
