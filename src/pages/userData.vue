@@ -4,16 +4,22 @@ import { onMounted, ref, type Ref } from 'vue'
 import type { ICustomer } from '@/interface/ICustomer.ts'
 import { useRoute } from 'vue-router'
 
-const { customers, fetchCustomers, formatearFecha } = useCustomers();
+const { fetchCustomer, formatearFecha } = useCustomers();
 
 const customer:Ref<ICustomer | undefined> = ref<ICustomer>();
 const route = useRoute();
 
 const { id } = route.params;
 
+// onMounted(async() => {
+//   await fetchCustomers()
+//   customer.value = customers.value.find((item:ICustomer) => item.id == +id);
+//
+// })
+
 onMounted(async() => {
-  await fetchCustomers()
-  customer.value = customers.value.find((item:ICustomer) => item.id == +id);
+  customer.value = await fetchCustomer(+id);
+  //customers.value.find((item:ICustomer) => item.id == +id);
 
 })
 </script>

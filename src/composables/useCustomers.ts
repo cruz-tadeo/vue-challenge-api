@@ -43,7 +43,7 @@ export function useCustomers() {
 
 
 
-  const fetchCustomer = async (id:number): Promise<unknown> => {
+  const fetchCustomer = async (id:number): Promise<undefined> => {
     loading.value = true;
     error.value = null;
 

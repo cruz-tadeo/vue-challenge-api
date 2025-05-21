@@ -1,13 +1,7 @@
 <template>
-<nav class="p-2">
-      <RouterLink
-        class="inline-block rounded-md border border-transparent bg-[#6bbbb0] px-3 py-1.5 text-center font-medium text-white hover:bg-[#568f87]"
-        to="/"
-        >Inicio</RouterLink
-      >
-
-    </nav>
  <h1 class="text-3xl font-semibold text-center mt-2 mb-12 ">Lista de Clientes</h1>
+
+  <router-link class="p-3 bg-blue-500 text-white rounded-lg mx-10" :to="{name:'create-user'}" >Crear</router-link>
 
  <div
  class="flex"
