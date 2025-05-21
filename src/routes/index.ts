@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
   {path: '/', name: 'Inicio', component: HomeTask},
   {path: '/task-table',name: 'Tabla de Tareas', component: TaskTable},
   {path: '/costumers-list',name: 'Lista de Clientes', component: costumersList},
-  {path: '/user-data',name: 'Datos del Usuario', component: UserData},
+  {path: '/user-data/:id',name: 'user-data', component: UserData},
 ]
 
 const router = createRouter({

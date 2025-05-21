@@ -1,14 +1,17 @@
 import { ref, type Ref } from 'vue';
 import type { ICustomer } from '@/interfaces/ICustomer';
+import { format } from 'date-fns'
 
 export function formatearFecha(fechaIso: string): string {
   const fecha = new Date(fechaIso);
-  const formateador = new Intl.DateTimeFormat('es-ES', {
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric',
-  });
-  return formateador.format(fecha);
+  // const formateador = new Intl.DateTimeFormat('es-ES', {
+  //   day: '2-digit',
+  //   month: 'long',
+  //   year: 'numeric',
+  // });
+  return format(fecha, 'yyyy-MM-dd hh:mm:ss');
+
+  //return formateador.format(fecha);
 }
 
 export function useCustomers() {

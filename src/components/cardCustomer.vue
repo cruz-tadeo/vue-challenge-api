@@ -8,7 +8,7 @@
       <nav class="place-items-end flex flex-col mt-3">
         <RouterLink
           class="inline-block rounded-md border border-transparent bg-indigo-600 px-1 py-1 text-sm font-medium text-white hover:bg-indigo-700"
-          to="/"
+          :to="{name:'user-data', params: {id: props.customer.id}}"
           >Ver detalles</RouterLink
         >
       </nav>
