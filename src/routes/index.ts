@@ -3,7 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import TaskTable from '@/pages/Task-table.vue'
 import HomeTask from '@/pages/home-task.vue'
 import costumersList from '@/pages/costumers-list.vue'
-import UserData from '@/components/userData.vue'
+import UserData from '@/pages/userData.vue'
 
 //definicion de rutas
 const routes: Array<RouteRecordRaw> = [
