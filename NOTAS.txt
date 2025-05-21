@@ -1,10 +1,27 @@
-ref<number>() → una variable que guarda un número.
+<template>
+  <div>
+    <button @click="fetchCustomers">Cargar clientes</button>
+    <div v-if="loading">Cargando...</div>
+    <div v-if="error">{{ error }}</div>
+    <ul v-if="customers.length">
+      <li v-for="customer in customers" :key="customer.id">
+        <div>
+          <strong>ID:</strong> {{ customer.id }}<br>
+          <strong>Nombre:</strong> {{ customer.name }}<br>
+          <strong>Email:</strong> {{ customer.email }}<br>
+          <!-- Agrega aquí más campos según tu modelo ICustomer -->
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>
 
-ref<string>() → guarda una cadena de texto.
+<script setup lang="ts">
+import { useCustomers } from '@/composables/useCustomers';
 
-ref<boolean>() → guarda un true o false.
+const { customers, loading, error, fetchCustomers } = useCustomers();
+</script>
 
-ref<number | null>() → guarda un número o null.
 
-//computed: permite crear una propiedad computada
-que se actualiza automaticamente cuando cambia el valor de search
+/*Asegúrate de reemplazar los campos (id, name, email, etc.) por los que realmente tenga tu interfaz ICustomer.
+Así podrás mostrar todos los datos de cada cliente en la lista.*/
