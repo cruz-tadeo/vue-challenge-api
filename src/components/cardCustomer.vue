@@ -1,3 +1,25 @@
+
+<script lang="ts" setup>
+import type { ICustomer } from '@/interface/ICustomer';
+const props = defineProps<{
+  customer : ICustomer
+}>()
+
+const emit = defineEmits<{
+  (e: 'delete', customer: ICustomer): void
+  (e: 'update', customer: ICustomer): void
+}>();
+
+const deleteCustomer = (customer:ICustomer) => {
+  emit('delete', customer);
+}
+
+const updateCustomer = (customer:ICustomer) => {
+  emit('update', customer)
+}
+
+</script>
+
 <template>
   <div class="w-72 rounded-2xl shadow-lg bg-[#f2ebeb] shadow-sky-200 p-4  mb-5 ml-4 ">
     <div class="flex flex-col">
@@ -9,19 +31,23 @@
         <RouterLink
           class="inline-block rounded-md border border-transparent bg-indigo-600 px-1 py-1 text-sm font-medium text-white hover:bg-indigo-700"
           :to="{name:'user-data', params: {id: props.customer.id}}"
-          >Ver detalles</RouterLink
-        >
+          >Ver detalles</RouterLink>
+          <!-- --Redireccion a Editar-- -->
+          <router-link
+          class="inline-block rounded-md border border-transparent bg-indigo-600 px-1 py-1 text-sm font-medium text-white hover:bg-indigo-800"
+          :to="{name:'update-user', params: {id: props.customer.id}}" >Editar</router-link>
       </nav>
+
+      <button @click="deleteCustomer(props.customer)"
+          class="inline-block rounded-md border border-transparent bg-indigo-600 px-1 py-1 text-sm font-medium text-white hover:bg-indigo-700"
+          >eliminar </button>
+
+
     </div>
   </div>
 
 </template>
 
-<script lang="ts" setup>
-import type { ICustomer } from '@/interfaces/ICustomer'
-const props = defineProps<{
-  customer : ICustomer
-}>()
-</script>
+
 
 <style scoped></style>
