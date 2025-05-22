@@ -21,6 +21,7 @@ onMounted(async() => {
   customer.value = await fetchCustomer(+id);
   //customers.value.find((item:ICustomer) => item.id == +id);
 
+
 })
 </script>
 
@@ -40,5 +41,6 @@ onMounted(async() => {
     <div v-else>
       <p>No existe informacion del usuario</p>
     </div>
+    
   </div>
 </template>
