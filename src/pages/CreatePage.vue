@@ -13,7 +13,9 @@ const customer = reactive<ICustomer>({
 
 const addCustomer = (customer:ICustomer) => {
   // Logic to add customer
-  console.log(customer, 'added');
+   console.log(customer, 'added');
+  customer.value.push(customer);
+
 }
 </script>
 
