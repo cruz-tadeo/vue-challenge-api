@@ -1,6 +1,6 @@
-import { ref, type Ref } from 'vue'
-import type { ICustomer } from '@/interface/ICustomer'
+import { ref, type Ref } from 'vue';
 import { format } from 'date-fns'
+import type { ICustomer } from '@/interface/ICustomer';
 
 export function formatearFecha(fechaIso: string): string {
   const fecha = new Date(fechaIso)
@@ -12,6 +12,24 @@ export function formatearFecha(fechaIso: string): string {
   return format(fecha, 'yyyy-MM-dd hh:mm:ss')
 
   //return formateador.format(fecha);
+}
+
+
+const deleteCustomerId = async (id: number): Promise<boolean> => {
+  try {
+    const response = await fetch(`http://localhost:3001/customers/${id}`, {
+      method: 'DELETE'
+    })
+    if (!response.ok) {
+      throw new Error(`Error al eliminar cliente id:${id}`)
+    }
+    console.log(`Cliente id:${id} eliminado`)
+    return true
+  }
+  catch (error) {
+    console.error('Eror inesperado',error)
+    return false
+  }
 }
 
 export function useCustomers() {
@@ -155,7 +173,7 @@ export function useCustomers() {
     fetchCustomer,
     addCustomer,
     editCustomer,
-    deleteCustomer,
+    deleteCustomerId,
     formatearFecha,
   }
 }

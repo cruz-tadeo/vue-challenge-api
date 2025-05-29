@@ -5,7 +5,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'delete', customer: ICustomer): void
+  (e: 'delete', id: number): void
   (e: 'update', customer: ICustomer): void
   (e: 'add', customer: ICustomer): void
 
@@ -17,13 +17,13 @@ const emit = defineEmits<{
 
 //  }
 
-const deleteCustomer = (customer: ICustomer) => {
-  emit('delete', customer)
+const deleteCustomerId = async(id: number | undefined) => {
+  if(id){
+    emit('delete', id)
+  }
 }
 
-const updateCustomer = (customer:ICustomer) => {
-   emit('update', customer)
- }
+
 
 </script>
 
@@ -42,7 +42,6 @@ const updateCustomer = (customer:ICustomer) => {
         >
         <!-- --Redireccion a Editar-- -->
         <router-link
-        
           class="inline-block rounded-md border border-transparent bg-indigo-600 px-1 py-1 text-sm font-medium text-white hover:bg-indigo-800"
            :to="{ name: 'update-user', params: { id: props.customer.id } }"
           >Editar</router-link
@@ -50,7 +49,7 @@ const updateCustomer = (customer:ICustomer) => {
       </nav>
 
       <button
-        @click="deleteCustomer(props.customer)"
+        @click="deleteCustomerId(props.customer.id)"
         class="inline-block rounded-md border border-transparent bg-indigo-600 px-1 py-1 text-sm font-medium text-white hover:bg-indigo-700"
       >
         eliminar

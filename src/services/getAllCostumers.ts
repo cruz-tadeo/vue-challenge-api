@@ -1,4 +1,5 @@
 import type { Ref, ref } from "vue";
+import
 
 export function getCostumers(){
   const customers: Ref<ICustomer[]> = ref([]);
@@ -38,4 +39,4 @@ export function getCostumers(){
     throw new Error('Error al obtener los usuarios')
   }
   return await response.json()
-}
+}}}

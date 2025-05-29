@@ -4,13 +4,18 @@ import { useCustomers } from '@/composables/useCustomers'
 import type { ICustomer } from '@/interface/ICustomer'
 import { onMounted } from 'vue'
 
-const { customers, fetchCustomers } = useCustomers()
+const { customers, fetchCustomers, deleteCustomerId } = useCustomers()
 
-onMounted(fetchCustomers)
+onMounted(async () => {
+  await fetchCustomers()
 
-const deleteCustomer = (customer: ICustomer) => {
-  console.log(customer.id, 'deleted')
-  // customers.value = customers.value.filter((item: ICustomer) => item.id != customer.id)
+  console.log(customers.value);
+})
+
+const deleteCustomer  = async (id: number) => {
+  console.log(id, 'deleted')
+  customers.value = customers.value.filter((item: ICustomer) => item.id != id)
+  await deleteCustomerId(id)
 }
 
 const updateCustomer = (customer: ICustomer) => {
@@ -18,6 +23,10 @@ const updateCustomer = (customer: ICustomer) => {
 
 }
 
+// const handleAddCustomer = (customer: ICustomer) => {
+//   console.log(customer.id, 'added')
+//   customers.value.push(customer)
+// }
 </script>
 
 <template>
