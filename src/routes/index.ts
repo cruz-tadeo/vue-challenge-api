@@ -11,7 +11,7 @@ import UserData from '@/pages/userData.vue'
 const routes: Array<RouteRecordRaw> = [
   {path: '/', name: 'Inicio', component: HomeTask},
   {path: '/task-table',name: 'Tabla de Tareas', component: TaskTable},
-  {path: '/costumers-list',name: 'Lista de Clientes', component: costumersList},
+  {path: '/costumers-list',name: 'costumers-list', component: costumersList},
   {path: '/user-data/:id',name: 'user-data', component: UserData},
   {path: '/add-user',name: 'create-user', component: CreatePage},
   {path: '/update-user/:id',name: 'update-user', component: UpdatePage},

@@ -15,22 +15,7 @@ export function formatearFecha(fechaIso: string): string {
 }
 
 
-const deleteCustomerId = async (id: number): Promise<boolean> => {
-  try {
-    const response = await fetch(`http://localhost:3001/customers/${id}`, {
-      method: 'DELETE'
-    })
-    if (!response.ok) {
-      throw new Error(`Error al eliminar cliente id:${id}`)
-    }
-    console.log(`Cliente id:${id} eliminado`)
-    return true
-  }
-  catch (error) {
-    console.error('Eror inesperado',error)
-    return false
-  }
-}
+
 
 export function useCustomers() {
   const customers: Ref<ICustomer[]> = ref([])
@@ -123,25 +108,43 @@ export function useCustomers() {
   }
 
   //funcion de eliminar cliente
-  const deleteCustomer = async (id: number): Promise<void> => {
-    loading.value = true
-    error.value = null
-    try {
-      await fetch(`http://localhost:3001/customers/${id}`, {
-        method: 'DELETE', //elimina un cliente con metodo delete
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-
-    } catch (err: unknown) {
-      error.value = (err as Error).message
-      console.error('Error al eliminar el customer:', err)
-    } finally {
-      loading.value = false
+  const deleteCustomerId = async (id: number): Promise<boolean> => {
+  try {
+    const response = await fetch(`http://localhost:3001/customers/${id}`, {
+      method: 'DELETE'
+    })
+    if (!response.ok) {
+      throw new Error(`Error al eliminar cliente id:${id}`)
     }
+    console.log(`Cliente id:${id} eliminado`)
+    return true
   }
+  catch (error) {
+    console.error('Eror inesperado',error)
+    return false
+  }
+}
+
+
+  // const deleteCustomer = async (id: number): Promise<void> => {
+  //   loading.value = true
+  //   error.value = null
+  //   try {
+  //     await fetch(`http://localhost:3001/customers/${id}`, {
+  //       method: 'DELETE', //elimina un cliente con metodo delete
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     })
+
+
+  //   } catch (err: unknown) {
+  //     error.value = (err as Error).message
+  //     console.error('Error al eliminar el customer:', err)
+  //   } finally {
+  //     loading.value = false
+  //   }
+  // }
 
   //funcion para obtener un cliente
   const fetchCustomer = async (id: number): Promise<undefined> => {
