@@ -7,6 +7,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'delete', customer: ICustomer): void
   (e: 'update', customer: ICustomer): void
+  (e: 'add', customer: ICustomer): void
 
 }>()
 
@@ -41,9 +42,9 @@ const updateCustomer = (customer:ICustomer) => {
         >
         <!-- --Redireccion a Editar-- -->
         <router-link
-          @click="updateCustomer(props.customer)"
+        
           class="inline-block rounded-md border border-transparent bg-indigo-600 px-1 py-1 text-sm font-medium text-white hover:bg-indigo-800"
-           :to="{ name: 'update-user', params: { id: props.customer.id } }"  -->
+           :to="{ name: 'update-user', params: { id: props.customer.id } }"
           >Editar</router-link
         >
       </nav>

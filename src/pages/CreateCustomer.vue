@@ -1,8 +1,11 @@
 <script setup lang="ts">
 
 import FormComponent from '@/components/FormComponent.vue'
+import { useCustomers } from '@/composables/useCustomers';
 import type { ICustomer } from '@/interface/ICustomer';
-import { reactive } from 'vue';
+import { onMounted, reactive } from 'vue';
+
+const {addCustomer} = useCustomers();
 
 const customer = reactive<ICustomer>({
   nombre: '',
@@ -14,9 +17,11 @@ const customer = reactive<ICustomer>({
 const addCustomer = (customer:ICustomer) => {
   // Logic to add customer
    console.log(customer, 'added');
-  customer.value.push(customer);
-
 }
+
+onMounted(async()=>{
+  await addCustomer(customer);
+})
 </script>
 
 <template>

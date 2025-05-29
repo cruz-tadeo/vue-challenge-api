@@ -10,7 +10,7 @@ onMounted(fetchCustomers)
 
 const deleteCustomer = (customer: ICustomer) => {
   console.log(customer.id, 'deleted')
-  customers.value = customers.value.filter((item: ICustomer) => item.id != customer.id)
+  // customers.value = customers.value.filter((item: ICustomer) => item.id != customer.id)
 }
 
 const updateCustomer = (customer: ICustomer) => {
@@ -18,10 +18,6 @@ const updateCustomer = (customer: ICustomer) => {
 
 }
 
-const handleAddCustomer = (customer: ICustomer) => {
-  console.log(customer.id, 'added')
-  customers.value.push(customer)
-}
 </script>
 
 <template>
@@ -31,12 +27,11 @@ const handleAddCustomer = (customer: ICustomer) => {
     >Crear</router-link
   >
 
-  <div class="flex">
+  <div class="flex gap-8 justify-center">
     <CardCustomer
       v-for="customer in customers"
       :key="customer.id"
       :customer="customer"
-      @add="handleAddCustomer"
       @delete="deleteCustomer"
       @update="updateCustomer"
     />

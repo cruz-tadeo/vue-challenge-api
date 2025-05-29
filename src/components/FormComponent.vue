@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {type ICustomer} from '@/interface/ICustomer'
+import { ref, type Ref } from 'vue';
 
 const props = withDefaults(defineProps<{
   title?:string //titulo que cambiara dependiendo del tipo de formulario
@@ -20,10 +21,12 @@ const sendCustomer = () => {
   emit('send-data', model.value);
 }
 
-//esta funcion agrega un cliente al listado
-const addCustomer = () => {
-  emit ('add-customer', model.value); //model.value es el cliente que se envia al padre
-}
+// const isEdit:Ref<boolean> = ref(false);
+
+// //esta funcion agrega un cliente al listado
+// const addCustomer = () => {
+//   emit ('add-customer', model.value); //model.value es el cliente que se envia al padre
+// }
 
 
 
@@ -58,7 +61,7 @@ const addCustomer = () => {
     </div>
 
     <button
-    @click="addCustomer"
+
     type="button"
     class="text-white bg-sky-700 hover:bg-sky-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{props.title}}</button>
   </form>

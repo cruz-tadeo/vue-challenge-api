@@ -18,13 +18,14 @@ const customer:Ref<ICustomer> = ref({
   direccion: ''
 });
 
-const editCustomer = (customer:ICustomer) => {
+const editCustomer = async (customer:ICustomer) => {
   // Logic to edit customer
   console.log(customer, 'edited');
+  await editCustomer(customer);
 }
 
 onMounted(async() => {
-  customer.value = await fetchCustomer(+id) ?? customer.value;
+  customer.value = await fetchCustomer(+id) ?? customer.value; //(+id) convierte el id a numero
 })
 </script>
 
