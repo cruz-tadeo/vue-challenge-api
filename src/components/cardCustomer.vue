@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { ICustomer } from '@/interface/ICustomer'
+import Swal from 'sweetalert2';
 
 const props = defineProps<{
   customer: ICustomer
@@ -12,9 +13,28 @@ const emit = defineEmits<{
 }>()
 
 const deleteCustomerId = async (id: number | undefined) => {
-  if (id) {
+  if (id === undefined) return //undefined porque solo se elimina si hay un id valido
+
+  const result = await Swal.fire({
+    title: "¿Estás seguro de eliminar este cliente?",
+    text: "¡Esta acción no se puede deshacer!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar"
+  })
+  if (result.isConfirmed) {
     emit('delete', id)
+
+    await Swal.fire({
+      title: "Cliente eliminado",
+      text: "El cliente ha sido eliminado exitosamente",
+      icon: "success",
+    })
   }
+
 }
 
 </script>

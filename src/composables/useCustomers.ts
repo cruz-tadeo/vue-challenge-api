@@ -28,7 +28,7 @@ export function useCustomers() {
     error.value = null
 
     try {
-      const response = await fetch('http://localhost:3001/customers')
+      const response = await fetch('http://localhost:3001/customers/')
 
       if (!response.ok) {
         throw new Error('Error en la respuesta de la API')
@@ -67,6 +67,7 @@ export function useCustomers() {
     } catch (err: unknown) {
       error.value = (err as Error).message
       console.error('Error al agregar customer:', err)
+      throw err
     } finally {
       loading.value = false
     }
@@ -79,7 +80,7 @@ export function useCustomers() {
     error.value = null
 
     try {
-      const response = await fetch(`http://localhost:3001/customers`, {
+      const response = await fetch(`http://localhost:3001/customers`, { //se omite el id porque no se espera que se modifique
         method: 'PATCH', //edita los datos de un cliente con metodo put
         headers: {
           'Content-Type': 'application/json',
@@ -104,6 +105,7 @@ export function useCustomers() {
     } catch (err: unknown) {
       error.value = (err as Error).message
       console.error('Error al editar customer:', err)
+      throw err
     } finally {
       loading.value = false
     }

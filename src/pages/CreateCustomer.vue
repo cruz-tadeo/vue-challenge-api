@@ -1,30 +1,48 @@
 <script setup lang="ts">
 
 import FormComponent from '@/components/FormComponent.vue'
-import { useCustomers } from '@/composables/useCustomers';
-import type { ICustomer } from '@/interface/ICustomer';
-import { onMounted, reactive } from 'vue';
-import { useRouter } from 'vue-router';
+import { useCustomers } from '@/composables/useCustomers'
+import type { ICustomer } from '@/interface/ICustomer'
+import { onMounted, reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import Swal from 'sweetalert2'
 
-const {addCustomer} = useCustomers();
-const router = useRouter();
+const { addCustomer } = useCustomers()
+const router = useRouter()
 
 const customer = reactive<ICustomer>({
   nombre: '',
   correo: '',
   telefono: '',
-  direccion: ''
-});
+  direccion: '',
+})
 
-const add = async(customer:ICustomer) => {
-  // Logic to add customer
-   console.log(customer, 'added');
-  await addCustomer(customer);
-  router.push({name: 'costumers-list'});
-
+const add = async (customer: ICustomer) => {
+  //logic to add customer
+  try {
+    await addCustomer(customer)
+    await Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Cliente agregado correctamente',
+      showConfirmButton: false,
+      timer: 1700,
+    })
+    router.push({ name: 'costumers-list' })
+  } catch (error) {
+    console.log(error)
+    await Swal.fire({
+      position: 'top-end',
+      icon: 'error',
+      title: 'Error',
+      text: 'No se pudo agregar el cliente. Intenta de nuevo.',
+      showConfirmButton: false,
+      timer: 1700,
+    })
+  }
 }
 
-onMounted(async()=>{
+onMounted(async () => {
   // await addCustomer(customer);
 })
 </script>
@@ -33,6 +51,4 @@ onMounted(async()=>{
   <form-component v-model="customer" :is-edit="false" @send-data="add"></form-component>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
