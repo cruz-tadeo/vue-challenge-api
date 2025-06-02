@@ -107,9 +107,6 @@ onMounted(async() => {
 
       <!-- mensaje de usuario no encontrado -->
       <div v-else class="bg-white rounded-xl shadow-lg border border-slate-200 p-8 text-center">
-        <div class="w-16 h-16 bg-slate-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-          <UserX class="w-8 h-8 text-slate-400" />
-        </div>
         <h3 class="text-xl font-semibold text-slate-800 mb-2">Usuario no encontrado</h3>
       </div>
     </div>

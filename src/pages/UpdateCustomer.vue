@@ -13,7 +13,7 @@ const route = useRoute();
 const { id } = route.params;
 
 const customer:Ref<ICustomer> = ref({
-  id: +id, //se agrega el id para que los cambios en el cliente se reflejen
+  
   nombre: '',
   correo: '',
   telefono: '',

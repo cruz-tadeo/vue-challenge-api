@@ -72,17 +72,19 @@ export function useCustomers() {
     }
   }
 
+
   //funcion de editar cliente
   const editCustomer = async (customer: ICustomer): Promise<void> => {
     loading.value = true
     error.value = null
+
     try {
-      const response = await fetch(`http://localhost:3001/customers/${customer.id}`, {
-        method: 'PUT', //edita los datos de un cliente con metodo put
+      const response = await fetch(`http://localhost:3001/customers`, {
+        method: 'PATCH', //edita los datos de un cliente con metodo put
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(customer), //envia los datos modificados
+        body: JSON.stringify(customer), //envia solo los campos editables
       })
 
       if (!response.ok) {
@@ -91,7 +93,6 @@ export function useCustomers() {
 
       //si la respuesta es ok, actualiza el cliente en la lista
       const json = await response.json()
-      
       customers.value = customers.value.map((item: ICustomer) => {
         //map, devuelve una nueva lista con los clientes modificados
         if (item.id === customer.id) {
