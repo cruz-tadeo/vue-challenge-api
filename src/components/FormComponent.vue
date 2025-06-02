@@ -64,7 +64,7 @@ const sendCustomer = (e: unknown) => {
             type="text"
             id="nombre"
             name="nombre"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
             placeholder="Ingresa el nombre completo"
             required
           />
@@ -80,7 +80,7 @@ const sendCustomer = (e: unknown) => {
             type="email"
             id="correo"
             name="correo"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2  focus:ring-green-500 focus:border-green-500"
             placeholder="ejemplo@correo.com"
             required
           />
@@ -97,7 +97,7 @@ const sendCustomer = (e: unknown) => {
               type="tel"
               id="telefono"
               name="telefono"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
               placeholder="+52 55 1234 5678"
               required
             />
@@ -112,7 +112,7 @@ const sendCustomer = (e: unknown) => {
               type="text"
               id="direccion"
               name="direccion"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2  focus:ring-green-500 focus:border-green-500"
               placeholder="Calle, Ciudad, Estado"
               required
             />
@@ -123,7 +123,7 @@ const sendCustomer = (e: unknown) => {
         <div class="flex space-x-3 pt-4">
           <button
             type="submit"
-            class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium"
+            class="flex-1 bg-green-300 text-white py-2 px-4 rounded-md hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 font-medium"
           >
             {{ props.isEdit ? 'Actualizar Cliente' : 'Crear Cliente' }} <!--Si no esta editando, crea un cliente-->
           </button>

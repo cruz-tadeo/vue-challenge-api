@@ -105,7 +105,7 @@ export function useCustomers() {
     } catch (err: unknown) {
       error.value = (err as Error).message
       console.error('Error al editar customer:', err)
-      throw
+      throw err
     } finally {
       loading.value = false
     }

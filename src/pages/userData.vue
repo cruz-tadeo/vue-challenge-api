@@ -54,7 +54,7 @@ onMounted(async() => {
             <!-- Email -->
             <div class="flex items-start space-x-3 p-4 bg-slate-50 rounded-lg">
               <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                <Mail class="w-5 h-5 text-blue-600" />
+
               </div>
               <div class="flex-1 min-w-0">
                 <p class="text-sm font-medium text-slate-600">Correo Electrónico</p>
@@ -65,7 +65,7 @@ onMounted(async() => {
             <!-- telefono -->
             <div class="flex items-start space-x-3 p-4 bg-slate-50 rounded-lg">
               <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                <Phone class="w-5 h-5 text-green-600" />
+
               </div>
               <div class="flex-1 min-w-0">
                 <p class="text-sm font-medium text-slate-600">Teléfono</p>
@@ -77,7 +77,7 @@ onMounted(async() => {
           <!-- direccion -->
           <div class="flex items-start space-x-3 p-4 bg-slate-50 rounded-lg">
             <div class="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-              <MapPin class="w-5 h-5 text-purple-600" />
+
             </div>
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium text-slate-600">Dirección</p>

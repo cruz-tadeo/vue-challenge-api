@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import TaskTable from '@/pages/Task-table.vue'
-import HomeTask from '@/pages/home-task.vue'
-import costumersList from '@/pages/costumers-list.vue'
+import TaskTable from '@/pages/TaskTable.vue'
+import HomeTask from '@/pages/HomeTask.vue'
+import costumersList from '@/pages/CostumersList.vue'
 import CreatePage from '@/pages/CreateCustomer.vue'
 import UpdatePage from '@/pages/UpdateCustomer.vue'
-import UserData from '@/pages/userData.vue'
+import UserData from '@/pages/UserData.vue'
 
 //definicion de rutas
 const routes: Array<RouteRecordRaw> = [

@@ -2,6 +2,8 @@
 import type { ICustomer } from '@/interface/ICustomer'
 import Swal from 'sweetalert2';
 
+
+
 const props = defineProps<{
   customer: ICustomer
 }>()
@@ -40,32 +42,31 @@ const deleteCustomerId = async (id: number | undefined) => {
 </script>
 
 <template>
-  <div class="w-72 rounded-2xl shadow-lg bg-[#ffffff] shadow-gray-400 p-4">
-    <div class="flex flex-col">
+  <div class="w-80 rounded-2xl shadow-lg bg-[#ffffff] shadow-gray-400 p-4 ">
+    <div class="flex flex-col ">
       <h5 class="text-xl text-center font-semibold mb-1">
         {{ props.customer.nombre }}
       </h5>
 
-      <nav class="place-items-end flex flex-col mt-3 ">
+      <nav class="flex flex-row items-center gap-2 mt-4 ">
         <RouterLink
-          class="inline-block rounded-md mb-2 border border-transparent bg-indigo-600 px-1 py-1 text-sm font-medium text-white hover:bg-indigo-700"
+          class="text-gray-700 bg-blue-200 border border-blue-300 focus:outline-none hover:bg-gray-100 focus:ring-4  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 "
           :to="{ name: 'user-data', params: { id: props.customer.id } }"
           >Ver detalles</RouterLink
         >
 
         <router-link
-          class="inline-block rounded-md border border-transparent bg-indigo-600 px-1 py-1 text-sm font-medium text-white hover:bg-indigo-800"
+          class="focus:outline-none text-gray-700 bg-green-300 border border-green-400 hover:bg-gray-100 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
           :to="{ name: 'update-user', params: { id: props.customer.id } }"
           >Editar</router-link
         >
-      </nav>
-
-      <button
+        <button
         @click="deleteCustomerId(props.customer.id)"
-        class="inline-block rounded-md border mt-2 border-transparent bg-red-600 px-1 py-1 text-sm font-medium text-white hover:bg-red-700"
+        class="focus:outline-none text-gray-700 bg-red-200 border border-red-300 hover:bg-gray-100  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
       >
         eliminar
       </button>
+      </nav>
     </div>
   </div>
 </template>
