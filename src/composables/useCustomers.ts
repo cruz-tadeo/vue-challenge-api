@@ -91,6 +91,7 @@ export function useCustomers() {
 
       //si la respuesta es ok, actualiza el cliente en la lista
       const json = await response.json()
+      
       customers.value = customers.value.map((item: ICustomer) => {
         //map, devuelve una nueva lista con los clientes modificados
         if (item.id === customer.id) {

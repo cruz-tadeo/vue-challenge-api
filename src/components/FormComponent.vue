@@ -1,74 +1,141 @@
 <script setup lang="ts">
-import {type ICustomer} from '@/interface/ICustomer'
-//import { ref, type Ref } from 'vue';
+import { type ICustomer } from '@/interface/ICustomer'
+// import { ref, type Ref } from 'vue'
 
-const props = withDefaults(defineProps<{
-  title?:string //titulo que cambiara dependiendo del tipo de formulario
-}>(), {
-  title: 'Agregar'
-})
+const props = withDefaults(
+  defineProps<{
+    title?: string
+    isEdit: boolean
+  }>(),
+  {
+    title: 'Agregar',
+  },
+)
 
-const model = defineModel<ICustomer>({required: true})
+const model = defineModel<ICustomer>({ required: true })
 
 //aqui se definen los eventos que se envian al padre
 const emit = defineEmits<{
   (e: 'send-data', customer: ICustomer): void
   (e: 'add-customer', customer: ICustomer): void
-}>();
+}>()
 
-//esta funcion hace el envio de los datos al padre
-const sendCustomer = () => {
-  console.log(model.value);
-  emit('send-data', model.value);
+//esta funcion hace el envio de los datos
+const sendCustomer = (e: unknown) => {
+  console.log(e)
+  console.log(model.value)
+  emit('send-data', model.value)
 }
 
-// const isEdit:Ref<boolean> = ref(false);
+// const editCustomer = () => {
+//   emit('send-data', model.value)
+// }
 
 // //esta funcion agrega un cliente al listado
 // const addCustomer = () => {
 //   emit ('add-customer', model.value); //model.value es el cliente que se envia al padre
 // }
-
-
-
 </script>
 
 <template>
-
-
-  <form @submit.prevent="sendCustomer" class="max-w-md mx-auto mt-25">
-    <div class="grid md:grid-cols-2 md:gap-6">
-      <div class="relative z-0 w-full mb-5 group">
-        <input v-model="model.nombre" type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-        <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre Completo</label>
-      </div>
-    </div>
-
-    <div class="relative z-0 w-full mb-5 group">
-      <input v-model="model.correo" type="email" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-      <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Correo Electronico</label>
-    </div>
-
-    <div class="grid md:grid-cols-2 md:gap-6">
-      <div class="relative z-0 w-full mb-5 group">
-        <input v-model="model.telefono" type="tel"  name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-        <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Numero de Telefono</label>
+  <div class="bg-gray-50 min-h-screen p-6">
+    <div class="max-w-lg mx-auto">
+      <!-- Simple Header -->
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">
+          {{ props.isEdit ? 'Editar Cliente' : 'Nuevo Cliente' }}
+        </h2>
+        <p class="text-gray-600 mt-1">
+          {{
+            props.isEdit ? 'Actualiza la información del cliente' : 'Completa los datos del cliente'
+          }}
+        </p>
       </div>
 
-      <div class="relative z-0 w-full mb-5 group">
-        <input v-model="model.direccion" type="text" name="floating_company" id="floating_company" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-        <label for="floating_company" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Direccion</label>
-      </div>
-    </div>
+      <!-- formulario-->
+      <form @submit.prevent="sendCustomer" class="bg-white rounded-lg border border-gray-200 p-6">
+        <!-- campo Nombre -->
+        <div class="mb-4">
+          <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">
+            Nombre Completo
+          </label>
+          <input
+            v-model="model.nombre"
+            type="text"
+            id="nombre"
+            name="nombre"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Ingresa el nombre completo"
+            required
+          />
+        </div>
 
-    <button
-    type="submit"
-    class="text-white bg-sky-700 hover:bg-sky-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 .loader" >{{props.title}}</button>
-  </form>
+        <!-- campo Correo -->
+        <div class="mb-4">
+          <label for="correo" class="block text-sm font-medium text-gray-700 mb-2">
+            Correo Electrónico
+          </label>
+          <input
+            v-model="model.correo"
+            type="email"
+            id="correo"
+            name="correo"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="ejemplo@correo.com"
+            required
+          />
+        </div>
+
+        <!-- campos Teléfono y Dirección juntos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label for="telefono" class="block text-sm font-medium text-gray-700 mb-2">
+              Teléfono
+            </label>
+            <input
+              v-model="model.telefono"
+              type="tel"
+              id="telefono"
+              name="telefono"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="+52 55 1234 5678"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="direccion" class="block text-sm font-medium text-gray-700 mb-2">
+              Dirección
+            </label>
+            <input
+              v-model="model.direccion"
+              type="text"
+              id="direccion"
+              name="direccion"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Calle, Ciudad, Estado"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="flex space-x-3 pt-4">
+          <button
+            type="submit"
+            class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium"
+          >
+            {{ props.isEdit ? 'Actualizar Cliente' : 'Crear Cliente' }} <!--Si no esta editando, crea un cliente-->
+          </button>
+          <router-link
+            class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            :to="{ name: 'costumers-list' }"
+            >Cancelar</router-link
+          >
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
-<style scoped>
-.loader {
-  
-}
-</style>
+<style scoped></style>

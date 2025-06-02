@@ -75,7 +75,7 @@ const alert =(title:string,text:string,icon:SweetAlertIcon  ='success',gif:strin
   <div class="container mx-auto my-10">
     <nav>
       <RouterLink
-        class="inline-block rounded-md border border-transparent bg-[#6bbbb0] px-3 py-1.5 text-center font-medium text-white hover:bg-[#568f87]"
+        class="inline-block rounded-md border border-transparent bg-[#6bbbb0] px-3 py-1.5 text-center font-medium text-white hover:bg-[#568f87] ml-40"
         to="/"
         >Inicio</RouterLink
       >
@@ -95,7 +95,7 @@ const alert =(title:string,text:string,icon:SweetAlertIcon  ='success',gif:strin
     <div class="max-w-[1200px] mx-auto">
       <div class="table-auto">
         <h1 class="text-2xl font-bold mb-4">Tareas</h1>
-        <table class="table-auto w-full border-collapse border border-gray-300">
+        <table class="table-auto w-full border-collapse border border-gray-300" >
           <thead>
             <tr class="bg-slate-700 text-white">
               <th class="border border-gray-300 px-4 py-2">N°</th>

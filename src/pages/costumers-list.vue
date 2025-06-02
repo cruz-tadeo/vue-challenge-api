@@ -9,10 +9,10 @@ const { customers, fetchCustomers, deleteCustomerId } = useCustomers()
 onMounted(async () => {
   await fetchCustomers()
 
-  console.log(customers.value);
+  console.log(customers.value)
 })
 
-const deleteCustomer  = async (id: number) => {
+const deleteCustomer = async (id: number) => {
   console.log(id, 'deleted')
   customers.value = customers.value.filter((item: ICustomer) => item.id != id)
   await deleteCustomerId(id)
@@ -20,7 +20,6 @@ const deleteCustomer  = async (id: number) => {
 
 const updateCustomer = (customer: ICustomer) => {
   console.log(customer.id, 'updated')
-
 }
 
 // const handleAddCustomer = (customer: ICustomer) => {
@@ -30,19 +29,24 @@ const updateCustomer = (customer: ICustomer) => {
 </script>
 
 <template>
-  <h1 class="text-3xl font-semibold text-center mt-2 mb-12">Lista de Clientes</h1>
+  <div class="min-h-screen bg-gradient-to-br from-slate-50 to-sky-100">
+    <h1 class="text-3xl font-semibold text-center mt-2 mb-4">Lista de Clientes</h1>
+    <div class="mb-8 ml-2">
+      <router-link
+        class="p-3 text-white bg-[#75a3c3] hover:bg-[#50758e] rounded-lg mx-10"
+        :to="{ name: 'create-user' }"
+        >Agregar Cliente</router-link
+      >
+    </div>
 
-  <router-link class="p-3 bg-blue-500 text-white rounded-lg mx-10" :to="{ name: 'create-user' }"
-    >Crear</router-link
-  >
-
-  <div class="flex gap-8 justify-center">
-    <CardCustomer
-      v-for="customer in customers"
-      :key="customer.id"
-      :customer="customer"
-      @delete="deleteCustomer"
-      @update="updateCustomer"
-    />
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ml-10">
+      <CardCustomer
+        v-for="customer in customers"
+        :key="customer.id"
+        :customer="customer"
+        @delete="deleteCustomer"
+        @update="updateCustomer"
+      />
+    </div>
   </div>
 </template>

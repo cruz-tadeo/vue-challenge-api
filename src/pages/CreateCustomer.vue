@@ -30,7 +30,7 @@ onMounted(async()=>{
 </script>
 
 <template>
-  <form-component v-model="customer" @send-data="add"></form-component>
+  <form-component v-model="customer" :is-edit="false" @send-data="add"></form-component>
 </template>
 
 <style scoped>
