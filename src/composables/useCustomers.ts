@@ -28,7 +28,7 @@ export function useCustomers() {
     error.value = null
 
     try {
-      const response = await fetch('http://localhost:3001/customers/')
+      const response = await fetch('http://localhost:3001/customers')
 
       if (!response.ok) {
         throw new Error('Error en la respuesta de la API')
@@ -105,7 +105,7 @@ export function useCustomers() {
     } catch (err: unknown) {
       error.value = (err as Error).message
       console.error('Error al editar customer:', err)
-      throw err
+      throw
     } finally {
       loading.value = false
     }
